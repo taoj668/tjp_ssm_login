@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+    xmlns:p="http://www.springframework.org/schema/p" >
+    <!-- bean definitions here -->
+
+<!-- 配置struts相关 -->
+	<bean id="UserDaoImpl" class="com.tj.dao.impl.UserDaoImpl">
+		<property name="iUserMapper" ref="IUserMapper"></property>
+	</bean> 
+	<!-- <bean id="User2" class="com.tj.domain.User"></bean>	 -->																			<!-- 控制反转指将对象的创建权，反转到Spring容器 -->
+<!-- 登录 -->
+	<bean id="LoginAction" class="com.tj.action.LoginAction" scope="prototype"> 			<!-- p名称空间依赖注入方式 p:UserDao-ref="UserDaoImpl"  -->
+		<property name="UserDao" ref="UserDaoImpl"></property>
+		<!-- <property name="user2" ref="User2"></property> -->								<!-- setter依赖注入 ，指Spring创建对象的过程中，将对象依赖的属性通过配置进行注入。依赖注入是基于控制反转的。 -->
+	</bean>
+<!-- 注册 -->
+	<bean id="RegisterAction" class="com.tj.action.RegisterAction" scope="prototype">
+		<property name="UserDao" ref="UserDaoImpl"></property>
+	</bean>
+<!-- 查询 -->
+	<bean id="SearchNameAction" class="com.tj.action.SearchNameAction" scope="prototype">
+		<property name="UserDao" ref="UserDaoImpl"></property>
+	</bean>
+<!-- 配置MyBatis相关 -->
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer ">
+		<property name="location" value="classpath:jdbc.properties"></property>
+	</bean>
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${driver}">	</property>
+		<property name="url" value="${url}"></property>
+		<property name="username" value="${username}"></property>
+		<property name="password" value="${password}"></property>
+	</bean>
+	
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:mybatisConfig.xml"></property>
+  		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<bean id="IUserMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+  		<property name="mapperInterface" value="com.tj.iMapper.IUserMapper" />
+  		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<!-- <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.tj.iMapper"></property>
+        <property name="sqlSessionFactory" value="sqlSessionFactory"></property>
+    </bean> -->
+	
+</beans>

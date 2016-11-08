@@ -1,0 +1,58 @@
+@CHARSET "UTF-8";
+*{margin:0;padding:0;}
+/*body主背景设置*/
+body{
+	background-image: url("../img/mainPageBackground.jpg");
+	background-position: 100%;
+}
+/*欢迎词div*/
+#welcome {
+	font-size: 20px;
+	color: yellow;
+	float: left;
+	margin-top: 5% ;
+	margin-left: 5% ;
+}
+/*登录/注册按钮div*/
+#choose {
+	float: right;
+	margin-top: 5% ;
+	margin-right: 5% ;
+}
+#choose > button {
+	color: white;
+	font-size: 20px;
+	width: 80px;	
+	height: 30px;
+	background-color: 0F88EB;
+}
+/*
+#backgroundPictrure {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: -10;
+}
+*/
+/*
+#backgroundPictrure > img {
+	position: fixed;
+	width: 100%;height: 100%;
+}
+*/
+/*简介div*/
+#introduction > #title{
+	font-size: 30px;
+	color: maroon;
+}
+
+#introduction > #text{
+	font-size: 20px;
+	color: white;
+	padding: 20px;
+}
+#introduction {
+	margin:5% 10%;
+	float: left;
+}
+

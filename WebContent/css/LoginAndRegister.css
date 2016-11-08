@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+*{margin:0;padding:0;}
+body{
+	background-image: url("../img/registerPageBackground.png");
+	background-position: 100%;
+}
+div {
+	margin-top: 10% ;
+}
+

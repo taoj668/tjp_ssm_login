@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="300"> <!-- status属性，这个属性表示log4j2本身的日志信息打印级别 -->  
+    <Appenders>  
+        <Console name="Console" target="SYSTEM_OUT">  
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />  
+        </Console>
+        <File name="taoj_logFile" filename="D:/tj.log" >   <!-- ${test.root}/app.log --><!-- D:/tj.log -->
+        	<PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" /> 
+        </File>
+    </Appenders>  
+    <Loggers>  
+        <Root level="info">  
+            <AppenderRef ref="taoj_logFile" /> 
+            <AppenderRef ref="Console" />
+        </Root>
+       <!--  <logger name="taoj_logger" level="trace" additivity="false"> additivity="false"表示在该logger中输出的日志不会再延伸到父层logger。这里如果改为true，则会延伸到Root Logger，遵循Root Logger的配置也输出一次。
+        	<AppenderRef ref="taoj_logFile" /> 
+        </logger>  --> 
+    </Loggers>  
+</Configuration> 

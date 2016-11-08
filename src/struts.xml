@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd"> 
+
+<struts>
+	<constant name="struts.custom.i18n.resources" value="message"></constant><!-- 国际化 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true"></constant><!-- 动态方法调用 -->
+	<package name="tjLogin" namespace="/LoginPackage" extends="struts-default">
+		<default-action-ref name="defaultAction"></default-action-ref>
+		<default-class-ref class="com.tj.action.DefaultAction"></default-class-ref>
+		
+		<global-results>
+			<result name="success">/jsp/Success.jsp</result>
+		</global-results>
+		<action name="LoginAction" class="LoginAction" method="login1"><!--   -->
+			<!-- <result name="success">/jsp/Success.jsp</result> -->
+			<result name="error">/jsp/Error.jsp</result>
+			<result name="kong">/jsp/Kong.jsp</result>
+			
+		</action>
+		
+		<action name="RegisterAction" class="RegisterAction">
+			<!-- <result name="success">/jsp/Success.jsp</result> -->
+			<result name="error">/jsp/Error.jsp</result>
+			<result name="exist">/jsp/Exist.jsp</result>
+		</action>
+	</package>
+	
+	<package name="tjSearch" namespace="/SearchPackage" extends="struts-default">
+		<action name="SearchNameAction" class="SearchNameAction">
+			<!-- <result name="success">/jsp/SearchMessage2.jsp</result> -->
+		</action>
+	</package>
+	
+</struts>
